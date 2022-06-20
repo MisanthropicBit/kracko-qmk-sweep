@@ -6,12 +6,17 @@
 
 #include "keymap_danish.h"
 
-#define BASE_LAYER           0
-#define SYMBOLS_LAYER        1
-#define EXTRA_SYMBOLS_LAYER  2
-#define CTRL_NAV_MEDIA_LAYER 3
-#define QMK_LAYER            4
-#define GAMING_LAYER         5
+#define BASE_LAYER          0
+#define SYMBOLS_LAYER       1
+#define EXTRA_SYMBOLS_LAYER 2
+#define CTRL_NAV_LAYER      3
+#define CTRL_MEDIA_LAYER    4
+#define GAMING_LAYER        5
+
+// Return to base layer if pressed
+#define RRRRRR      TG(BASE_LAYER)
+#define OSM_SFT_GUI OSM(MOD_LSFT | MOD_LGUI)
+#define OSM_CTL_GUI OSM(MOD_LCTL | MOD_LGUI)
 
 #define KC_BRIGHT_UP         KC_PRINT_SCREEN
 #define KC_BRIGHT_DOWN       KC_SCROLL_LOCK
@@ -25,35 +30,31 @@
 #define KC_COPY              LGUI(KC_C)
 #define KC_PASTE             LGUI(KC_V)
 #define KC_CUT               LGUI(KC_X)
-#define KC_LWORD             LALT(KC_LEFT)
-#define KC_RWORD             RALT(KC_LEFT)
-#define KC_LEND              LGUI(KC_LEFT)
-#define KC_REND              RGUI(KC_RIGHT)
-#define KC_SNAPSHOT_AREA     LSFT(LGUI(KC_4))
 #define KC_SFTTAB            LSFT(KC_TAB)
 #define KC_AMPERSAND         LSFT(KC_7)
 #define KC_BAR               LALT(KC_I)
+#define KC_HAT               LSFT(KC_6)
 
 /***************************************************************************************************
  * QWERTY layer
 ****************************************************************************************************/
 const uint16_t BASE_QWERTY_LAYER[] = {
-    KC_Q,         KC_W, KC_E, KC_R,               KC_T,                  KC_Y,    KC_U,    KC_I,     KC_O,   KC_P,\
-    KC_A,         KC_S, KC_D, KC_F,               LATLT_T(KC_G),         KC_H,    KC_J,    KC_K,     KC_L,   KC_SCLN,\
-    LSFT_T(KC_Z), KC_X, KC_C, KC_V,               KC_B,                  KC_N,    KC_M,    KC_COMMA, KC_DOT, LSFT_T(KC_SLASH),\
-\
-                              MO(CTRL_NAV_LAYER), KC_SPC,                KC_BSPC, MO(SYMBOLS_LAYER)
+    KC_Q,         KC_W,         KC_E, KC_R, KC_T,            KC_Y,    KC_U,    KC_I,     KC_O,   KC_P,\
+    LCTL_T(KC_A), LSFT_T(KC_S), KC_D, KC_F, KC_G,            KC_H,    KC_J,    KC_K,     KC_L,   KC_QUOTE,\
+    KC_Z,         KC_X,         KC_C, KC_V, KC_B,            KC_N,    KC_M,    KC_COMMA, KC_DOT, LSFT_T(KC_SLASH),\
+
+                    MO(CTRL_NAV_LAYER), KC_SPACE,            KC_BSPC, MO(SYMBOLS_LAYER)
 };
 
 /***************************************************************************************************
  * Colemak DH layer
 ****************************************************************************************************/
 const uint16_t BASE_COLEMAK_DH_LAYER[] = {
-    KC_Q,         KC_W, KC_F, KC_P,               KC_B,                  KC_J,    KC_L,              KC_U,     KC_Y,   KC_P,\
-    KC_A,         KC_R, KC_S, KC_T,               LALT_T(KC_G),          KC_M,    KC_N,              KC_E,     KC_I,   KC_O,\
-    LSFT_T(KC_Z), KC_X, KC_C, KC_D,               KC_V,                  KC_K,    KC_H,              KC_COMMA, KC_DOT, LSFT_T(KC_SLSH),\
-\
-                              MO(CTRL_NAV_LAYER), KC_SPC,                KC_BSPC, MO(SYMBOLS_LAYER)
+    KC_Q,         KC_W,         KC_F, KC_P, KC_B,            KC_J,    KC_L,              KC_U,     KC_Y,   KC_QUOTE,\
+    LCTL_T(KC_A), LSFT_T(KC_R), KC_S, KC_T, KC_G,            KC_M,    KC_N,              KC_E,     KC_I,   KC_O,\
+    KC_Z,         KC_X,         KC_C, KC_D, KC_V,            KC_K,    KC_H,              KC_COMMA, KC_DOT, LSFT_T(KC_SLSH),\
+
+                    MO(CTRL_NAV_LAYER), KC_SPACE,            KC_BSPC, MO(SYMBOLS_LAYER)
 };
 
 #ifdef _USE_QWERTY_BASE_LAYER
@@ -66,75 +67,55 @@ const uint16_t BASE_COLEMAK_DH_LAYER[] = {
  * Symbols layer
 ****************************************************************************************************/
 const uint16_t _SYMBOLS_LAYER[] = {
-    KC_1,       KC_2,      KC_3,                    KC_4,                    KC_5,         KC_6,     KC_7,        KC_8,      KC_9,     KC_0,\
-    KC_PERCENT, KC_LPAREN, KC_LBRACKET,             KC_SLBRACKET,            KC_AMPERSAND, KC_EQUAL, KC_QUESTION, KC_QUOTE,  KC_PLUS,  KC_ASTERISK,\
-    KC_DOLLAR,  KC_RPAREN, KC_RBRACKET,             KC_SRBRACKET,            KC_BAR,       KC_GRAVE, KC_EXCLAIM,  KC_DQUOTE, KC_MINUS, KC_AT,\
-\
-                           MO(EXTRA_SYMBOLS_LAYER), KC_SPACE,                ______,       _______
+    KC_1,       KC_2,      KC_3,        KC_4,                    KC_5,         KC_6,     KC_7,        KC_8,           KC_9,     KC_0,\
+    KC_PERCENT, KC_LPAREN, KC_LBRACKET, KC_SLBRACKET,            KC_AMPERSAND, KC_EQUAL, KC_QUESTION, LSFT(KC_MINUS), KC_PLUS,  KC_ASTERISK,\
+    KC_DOLLAR,  KC_RPAREN, KC_RBRACKET, KC_SRBRACKET,            KC_BAR,       KC_GRAVE, KC_EXCLAIM,  KC_DQUOTE,      KC_MINUS, KC_AT,\
+
+                     MO(EXTRA_SYMBOLS_LAYER), ______,            ______,       ______
 };
 
 /***************************************************************************************************
  * Extra symbols layer
 ****************************************************************************************************/
 const uint16_t _EXTRA_SYMBOLS_LAYER[] = {
-    ______, ______, ______, ______, ______,             ______, ______,       ______, ______, ______,\
-    ______, ______, ______, ______, ______,             ______, KC_COLON,     ______, ______, ______,\
-    ______, ______, ______, ______, ______,             ______, KC_SEMICOLON, ______, ______, KC_BACKSLASH,\
-\
-                            ______, KC_SPACE,           ______, _______
+    ______, ______, ______, ______,   ______,            ______, ______,       ______, ______, ______,\
+    ______, ______, ______, KC_SPACE, ______,            ______, KC_COLON,     KC_BACKSLASH, KC_GRAVE, ______,\
+    ______, ______, ______, ______,   ______,            ______, KC_SEMICOLON, KC_HAT, ______, ______,\
+
+                              ______, ______,            ______, ______
 };
 
 /***************************************************************************************************
- * Control/Navigation layer
+ * Control/Navigation layer (arrow keys are laid out as H, J, K, L)
 ****************************************************************************************************/
 const uint16_t _CTRL_NAV_LAYER[] = {
-    _______,          _______, KC_UP,   _______,  _______,          KC_BRIGHT_DOWN, KC_BRIGHT_UP, _______,  _______,   KC_BOOTLOADER,\
-    KC_CAPS,          KC_LEFT, KC_DOWN, KC_RIGHT, _______,          KC_LEND,        KC_LWORD,     KC_RWORD, KC_REND,   KC_TAB,\
-    KC_SNAPSHOT_AREA, _______, _______, _______,  _______,          KC_COPY,        KC_PASTE,     KC_CUT,   KC_SFTTAB, ______,\
-\
-                                        _______,  KC_SPACE,         ______,         MO(CTRL_MEDIA_LAYER)
+    ______,    OSM_SFT_GUI,   OSM_CTL_GUI,   ______,        L_CMD(KC_SPACE),            TG(CTRL_MEDIA_LAYER), KC_ENTER, KC_ESCAPE, ______, ______,\
+    CAPS_WORD, KC_LSFT,       KC_LCMD,       KC_LALT,       KC_SPACE,                   KC_TAB,               KC_LEFT,  KC_DOWN,   KC_UP,   KC_RIGHT,\
+    ______,    OSM(MOD_LSFT), OSM(MOD_LCMD), OSM(MOD_LALT), ______,                     KC_SFTTAB,            KC_CUT,   KC_COPY,   KC_PASTE, ______,\
+
+                                                            ______,  ______,            ______, MO(_EXTRA_SYMBOLS_LAYER)
 };
 
 /***************************************************************************************************
  * Control/Media layer
 ****************************************************************************************************/
 const uint16_t _CTRL_MEDIA_LAYER[] = {
-    _______, _______, ______, ______, ______,            _______, _______,        _______,           _______,             KC_BOOTLOADER
-    _______, _______, ______, ______, ______,            _______, KC_BRIGHT_UP,   KC_AUDIO_VOL_UP,   KC_MEDIA_PLAY_PAUSE, DF(BASE_QWERTY_LAYER)
-    _______, _______, ______, ______, ______,            _______, KC_BRIGHT_DOWN, KC_AUDIO_VOL_DOWN, KC_AUDIO_MUTE,       DF(BASE_COLEMAK_DH_LAYER)
-                              ______, ______,            _______, _______
+    ______, QK_REBOOT, QK_BOOTLOADER, ______,              ______,          RRRRRR, ______,         ______,            ______,              ______,\
+    ______, ______,    ______,        MOD_LSFT | MOD_LALT, ______,          ______, KC_BRIGHT_UP,   KC_AUDIO_VOL_UP,   KC_MEDIA_PLAY_PAUSE, DF(BASE_QWERTY_LAYER),\
+    ______, ______,    ______,        ______,              ______,          ______, KC_BRIGHT_DOWN, KC_AUDIO_VOL_DOWN, KC_AUDIO_MUTE,       DF(BASE_COLEMAK_DH_LAYER),\
+                                                   RRRRRR, RRRRRR,          RRRRRR, RRRRRR
 }
-
-/***************************************************************************************************
- * QMK (bootloader/reset) layer
-****************************************************************************************************/
-const uint16_t _QMK_LAYER[] = {
-    _______, _______, _______, _______, _______,               _______, _______, _______, _______, _______
-    _______, _______, _______, _______, _______,               _______, _______, _______, _______, _______
-    _______, _______, _______, _______, _______,               _______, _______, _______, _______, _______
-
-                               _______, _______,               _______, _______
-};
 
 /***************************************************************************************************
  * Gaming layer
 ****************************************************************************************************/
 const uint16_t _GAMING_LAYER[] = {
-    ______, ______,  KC_W,   ______, ______,               ______, ______, ______, ______, ______,
-    ______, KC_A,    KC_S,   KC_D,   ______,               ______, ______, ______, ______, ______,
-    KC_LCTL, ______, ______, ______, ______,               ______, ______, ______, ______, ______,
-                             ______, ______,               ______, ______                
-};
+    ______, ______,  KC_W,   ______, ______,            ______, ______, ______, ______, ______,\
+    ______, KC_A,    KC_S,   KC_D,   ______,            ______, ______, ______, ______, ______,\
+    KC_LCTL, ______, ______, ______, ______,            ______, ______, ______, ______, ______,\
 
-/* const uint16_t QWERTY_LAYOUT[] = { */
-/*     KC_Q,         KC_W,         KC_E,            KC_R,           KC_T, */
-/*     KC_Y,         KC_U,         KC_I,            KC_O,           KC_P, */
-/*     LSFT_T(KC_A), LT(5, KC_S),  LT(1, KC_D),     LT(3, KC_F),    KC_G, */
-/*     KC_H,         LT(4, KC_J),  LT(2, KC_K),     LT(6,KC_L),     LSFT_T(KC_SCLN), */
-/*     KC_Z,         LCTL_T(KC_X), LALT_T(KC_C),    KC_V,           KC_B, */
-/*     KC_N,         KC_M,         LALT_T(KC_COMM), LCTL_T(KC_DOT), KC_SLSH, */
-/*     KC_P0,        KC_BSPC,      LT(7, KC_SPC),   KC_P1 */
-/* }; */
+                             ______, ______,            ______, ______
+};
 
 /***************************************************************************************************
  * Combos
@@ -213,6 +194,5 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [EXTRA_SYMBOLS_LAYER] = LAYOUT_split_3x5_2(_EXTRA_SYMBOLS_LAYER),
     [CTRL_NAV_LAYER]      = LAYOUT_split_3x5_2(_CTRL_NAV_LAYER),
     [CTRL_MEDIA_LAYER]    = LAYOUT_split_3x5_2(_CTRL_MEDIA_LAYER),
-    [QMK_LAYER]           = LAYOUT_split_3x5_2(_QMK_LAYER),
     [GAMING_LAYER]        = LAYOUT_split_3x5_2(_GAMING_LAYER)
 };
