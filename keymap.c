@@ -20,6 +20,7 @@ enum Layers {
 #define RRRRRR      TG(BASE_LAYER)
 #define OSM_SFT_GUI OSM(MOD_LSFT | MOD_LGUI)
 #define OSM_CTL_GUI OSM(MOD_LCTL | MOD_LGUI)
+#define OSM_ALT_GUI OSM(MOD_LALT | MOD_LGUI)
 
 #define KC_BRIGHT_UP         KC_PAUSE
 #define KC_BRIGHT_DOWN       KC_SCROLL_LOCK
@@ -60,11 +61,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         MO(CTRL_NAV_LAYER), KC_SPACE,            KC_BSPC, MO(SYMBOLS_LAYER)
     ),
     [SYMBOLS_LAYER] = LAYOUT(
-        KC_1,       KC_2,      KC_3,        KC_4,                    KC_5,         KC_6,     KC_7,        KC_8,           KC_9,     KC_0,
-        KC_PERCENT, KC_LPAREN, KC_LBRACKET, KC_SLBRACKET,            KC_AMPERSAND, KC_EQUAL, KC_QUESTION, LSFT(KC_MINUS), KC_PLUS,  KC_ASTERISK,
-        KC_DOLLAR,  KC_RPAREN, KC_RBRACKET, KC_SRBRACKET,            KC_BAR,       KC_GRAVE, KC_EXCLAIM,  KC_DQUOTE,      KC_MINUS, KC_AT,
+        KC_1,    KC_2,    KC_3,    KC_4,    KC_5,               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
+        DK_PERC, DK_LPRN, KC_LBRC, DK_LBRC, DK_AMPR,            DK_EQL,  DK_QUES, DK_UNDS, DK_PLUS, DK_ASTR,
+        DK_PND,  DK_RPRN, KC_RBRC, DK_RBRC, DK_PIPE,            DK_TILD, DK_EXLM, DK_DQUO, DK_MINS, DK_AT,
 
-                        MO(EXTRA_SYMBOLS_LAYER), _______,            _______,       _______
+            MO(EXTRA_SYMBOLS_LAYER), _______,            _______,       _______
     ),
     [EXTRA_SYMBOLS_LAYER] = LAYOUT(
         _______, _______, _______, _______,   _______,            _______, _______,       _______, _______, _______,
@@ -74,18 +75,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 _______, _______,            _______, _______
     ),
     [CTRL_NAV_LAYER] = LAYOUT(
-        _______,   OSM_SFT_GUI,   OSM_CTL_GUI,   _______,        LCMD(KC_SPACE),            TG(CTRL_MEDIA_LAYER), KC_ENTER, KC_ESCAPE, _______, _______,
-        _______ /*CAPS_WORD*/, KC_LSFT,       KC_LCMD,       KC_LALT,       KC_SPACE,                   KC_TAB,               KC_LEFT,  KC_DOWN,   KC_UP,   KC_RIGHT,
-        _______,   OSM(MOD_LSFT), OSM(MOD_LGUI), OSM(MOD_LALT), _______,                     KC_SFTTAB,            KC_CUT,   KC_COPY,   KC_PASTE, _______,
+              _______, OSM_SFT_GUI,   OSM_CTL_GUI,   OSM_ALT_GUI,   LCMD(KC_SPACE),           TG(CTRL_MEDIA_LAYER), KC_ENTER, KC_ESCAPE, _______, _______,
+/*CAPS_WORD*/ _______, KC_LSFT,       KC_LCMD,       KC_LALT,       KC_SPACE,                 KC_TAB,               KC_LEFT,  KC_DOWN,   KC_UP,   KC_RIGHT,
+              _______, OSM(MOD_LSFT), OSM(MOD_LGUI), OSM(MOD_LALT), _______,                  KC_SFTTAB,            KC_CUT,   KC_COPY,   KC_PASTE, _______,
 
-                                                                _______,  _______,            _______, MO(EXTRA_SYMBOLS_LAYER)
+                                                                 _______,  _______,            _______, MO(EXTRA_SYMBOLS_LAYER)
     ),
     [CTRL_MEDIA_LAYER] = LAYOUT(
-        _______, _______, QK_BOOTLOADER, _______,              _______,          RRRRRR, _______,         _______,            _______,              _______,
-        _______, _______, _______,        _______, _______,          _______, KC_BRIGHT_UP,   KC_AUDIO_VOL_UP,   KC_MEDIA_PLAY_PAUSE, DF(BASE_QWERTY_LAYER),
-        _______, _______, _______,        _______,              _______,          _______, KC_BRIGHT_DOWN, KC_AUDIO_VOL_DOWN, KC_AUDIO_MUTE,       DF(BASE_COLEMAK_DH_LAYER),
+        _______, _______,                   _______, _______, QK_BOOTLOADER,    TG(CTRL_MEDIA_LAYER), _______,        _______,           _______,             _______,
+        _______, DF(BASE_QWERTY_LAYER),     _______, _______, _______,          _______,              KC_BRIGHT_UP,   KC_AUDIO_VOL_UP,   KC_MEDIA_PLAY_PAUSE, _______,
+        _______, DF(BASE_COLEMAK_DH_LAYER), _______, _______, _______,          _______,              KC_BRIGHT_DOWN, KC_AUDIO_VOL_DOWN, KC_AUDIO_MUTE,       _______,
 
-                                                    RRRRRR, RRRRRR,          RRRRRR, RRRRRR
+                                                             RRRRRR, RRRRRR,          RRRRRR, RRRRRR
     ),
     [GAMING_LAYER] = LAYOUT(
         _______, _______,  KC_W,   _______, _______,            _______, _______, _______, _______, _______,
