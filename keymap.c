@@ -21,7 +21,7 @@ enum Layers {
 #define OSM_SFT_GUI OSM(MOD_LSFT | MOD_LGUI)
 #define OSM_CTL_GUI OSM(MOD_LCTL | MOD_LGUI)
 
-#define KC_BRIGHT_UP         KC_PRINT_SCREEN
+#define KC_BRIGHT_UP         KC_PAUSE
 #define KC_BRIGHT_DOWN       KC_SCROLL_LOCK
 #define KC_LPAREN            LSFT(KC_8)
 #define KC_RPAREN            LSFT(KC_9)
