@@ -6,13 +6,15 @@
 
 #include "keymap_danish.h"
 
-#define BASE_QWERTY_LAYER     0
-#define BASE_COLEMAK_DH_LAYER 1
-#define SYMBOLS_LAYER         2
-#define EXTRA_SYMBOLS_LAYER   3
-#define CTRL_NAV_LAYER        4
-#define CTRL_MEDIA_LAYER      5
-#define GAMING_LAYER          6
+enum Layers {
+    BASE_QWERTY_LAYER = 0,
+    BASE_COLEMAK_DH_LAYER,
+    SYMBOLS_LAYER,
+    EXTRA_SYMBOLS_LAYER,
+    CTRL_NAV_LAYER,
+    CTRL_MEDIA_LAYER,
+    GAMING_LAYER,
+};
 
 // Return to base layer if pressed
 #define RRRRRR      TG(BASE_LAYER)
