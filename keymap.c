@@ -16,8 +16,6 @@ enum Layers {
     GAMING_LAYER,
 };
 
-// Return to base layer if pressed
-#define RRRRRR      TG(BASE_LAYER)
 #define OSM_SFT_GUI OSM(MOD_LSFT | MOD_LGUI)
 #define OSM_CTL_GUI OSM(MOD_LCTL | MOD_LGUI)
 #define OSM_ALT_GUI OSM(MOD_LALT | MOD_LGUI)
@@ -86,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, DF(BASE_QWERTY_LAYER),     _______, _______, _______,          _______,              KC_BRIGHT_UP,   KC_AUDIO_VOL_UP,   KC_MEDIA_PLAY_PAUSE, _______,
         _______, DF(BASE_COLEMAK_DH_LAYER), _______, _______, _______,          _______,              KC_BRIGHT_DOWN, KC_AUDIO_VOL_DOWN, KC_AUDIO_MUTE,       _______,
 
-                                                             RRRRRR, RRRRRR,          RRRRRR, RRRRRR
+                           TG(CTRL_MEDIA_LAYER), TG(CTRL_MEDIA_LAYER),          TG(CTRL_MEDIA_LAYER), TG(CTRL_MEDIA_LAYER)
     ),
     [GAMING_LAYER] = LAYOUT(
         _______, _______,  KC_W,   _______, _______,            _______, _______, _______, _______, _______,
