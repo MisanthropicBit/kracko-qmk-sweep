@@ -6,7 +6,7 @@
 
 #include "keymap_danish.h"
 
-enum Layers {
+enum layers {
     BASE_QWERTY_LAYER = 0,
     BASE_COLEMAK_DH_LAYER,
     SYMBOLS_LAYER,
@@ -51,18 +51,18 @@ enum Layers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE_QWERTY_LAYER] = LAYOUT(
-        KC_Q,         KC_W,         KC_E, KC_R, KC_T,            KC_Y,    KC_U,    KC_I,     KC_O,   KC_P,
-        LCTL_T(KC_A), LSFT_T(KC_S), KC_D, KC_F, KC_G,            KC_H,    KC_J,    KC_K,     KC_L,   DK_QUOT,
-        KC_Z,         KC_X,         KC_C, KC_V, KC_B,            KC_N,    KC_M,    KC_COMMA, KC_DOT, LSFT_T(KC_SLASH_),
+        KC_Q, KC_W, KC_E, KC_R, KC_T,            KC_Y, KC_U, KC_I,     KC_O,   KC_P,
+        KC_A, KC_S, KC_D, KC_F, KC_G,            KC_H, KC_J, KC_K,     KC_L,   DK_QUOT,
+        KC_Z, KC_X, KC_C, KC_V, KC_B,            KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH_,
 
-                         MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
+         MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
     ),
     [BASE_COLEMAK_DH_LAYER] = LAYOUT(
-        KC_Q,         KC_W,         KC_F, KC_P, KC_B,            KC_J,    KC_L, KC_U,     KC_Y,   KC_QUOTE,
-        LCTL_T(KC_A), LSFT_T(KC_R), KC_S, KC_T, KC_G,            KC_M,    KC_N, KC_E,     KC_I,   KC_O,
-        KC_Z,         KC_X,         KC_C, KC_D, KC_V,            KC_K,    KC_H, KC_COMMA, KC_DOT, LSFT_T(KC_SLSH),
+        KC_Q, KC_W, KC_F, KC_P, KC_B,            KC_J, KC_L, KC_U,     KC_Y,   DK_QUOT,
+        KC_A, KC_R, KC_S, KC_T, KC_G,            KC_M, KC_N, KC_E,     KC_I,   KC_O,
+        KC_Z, KC_X, KC_C, KC_D, KC_V,            KC_K, KC_H, KC_COMMA, KC_DOT, KC_SLASH_,
 
-                         MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
+         MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
     ),
     [SYMBOLS_LAYER] = LAYOUT(
         KC_1,      KC_2,    KC_3,     KC_4,    KC_5,               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
@@ -104,3 +104,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, CTRL_NAV_LAYER, SYMBOLS_LAYER, EXTRA_SYMBOLS_LAYER);
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Combos
+//////////////////////////////////////////////////////////////////////////////////////////
+
+enum combo_events {
+  LSFT = 0,
+  RSFT,
+  LCTL,
+  RCTL,
+  COMBO_LENGTH,
+};
+
+uint16_t COMBO_LEN = COMBO_LENGTH;
+
+// For QWERTY
+const uint16_t PROGMEM left_shift[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM right_shift[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM left_ctrl[] = {KC_S, KC_D, COMBO_END};
+const uint16_t PROGMEM right_ctrl[] = {KC_K, KC_L, COMBO_END};
+
+combo_t key_combos[] = {
+    [LSFT] = COMBO(left_shift, KC_LSFT),
+    [RSFT] = COMBO(right_shift, KC_RSFT),
+    [LCTL] = COMBO(left_ctrl, KC_LCTL),
+    [RCTL] = COMBO(right_ctrl, KC_RCTL),
+};
