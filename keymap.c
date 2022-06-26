@@ -114,6 +114,9 @@ enum combo_events {
   RSFT,
   LCTL,
   RCTL,
+  LSFT_LCMD,
+  LGUI,
+  RGUI,
   COMBO_LENGTH,
 };
 
@@ -124,12 +127,19 @@ const uint16_t PROGMEM left_shift[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM right_shift[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM left_ctrl[] = {KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM right_ctrl[] = {KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM lsft_lcmd[] = {KC_Z, KC_X, COMBO_END};
+const uint16_t PROGMEM lgui[] = {KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM rgui[] = {KC_U, KC_I, COMBO_END};
 
 combo_t key_combos[] = {
     [LSFT] = COMBO(left_shift, KC_LSFT),
     [RSFT] = COMBO(right_shift, KC_RSFT),
     [LCTL] = COMBO(left_ctrl, KC_LCTL),
     [RCTL] = COMBO(right_ctrl, KC_RCTL),
+    [LSFT_LCMD] = COMBO(lsft_lcmd, LSFT(KC_LGUI)),
+    [LGUI] = COMBO(lgui, KC_LGUI),
+    [RGUI] = COMBO(rgui, KC_RGUI),
+};
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // CAPS_WORD configuration
