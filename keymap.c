@@ -72,11 +72,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       _______, _______,            _______,       _______
     ),
     [CTRL_NAV_LAYER] = LAYOUT(
-              _______, OSM_SFT_GUI,   OSM_CTL_GUI,   OSM_ALT_GUI,   LCMD(KC_SPACE),           TG(CTRL_MEDIA_LAYER), KC_ENTER, KC_ESCAPE, _______, _______,
-/*CAPS_WORD*/ _______, KC_LSFT,       KC_LCMD,       KC_LALT,       KC_SPACE,                 KC_TAB,               KC_LEFT,  KC_DOWN,   KC_UP,   KC_RIGHT,
-              _______, OSM(MOD_LSFT), OSM(MOD_LGUI), OSM(MOD_LALT), _______,                  KC_SFTTAB,            KC_CUT,   KC_COPY,   KC_PASTE, _______,
+        _______,   OSM_SFT_GUI,   OSM_CTL_GUI,   OSM_ALT_GUI,   LCMD(KC_SPACE),           TG(CTRL_MEDIA_LAYER), KC_ENTER, KC_ESCAPE, _______, _______,
+        CAPS_WORD, KC_LSFT,       KC_LCMD,       KC_LALT,       KC_SPACE,                 KC_TAB,               KC_LEFT,  KC_DOWN,   KC_UP,   KC_RIGHT,
+        _______,   OSM(MOD_LSFT), OSM(MOD_LGUI), OSM(MOD_LALT), _______,                  KC_SFTTAB,            KC_CUT,   KC_COPY,   KC_PASTE, _______,
 
-                                                                 _______,  _______,            _______, _______
+                                                             _______,  _______,            _______, _______
     ),
     [EXTRA_SYMBOLS_LAYER] = LAYOUT(
         _______, _______, _______,  _______,  _______,            _______,      KC_AE,         KC_OE,   KC_AA,     _______,
@@ -130,4 +130,31 @@ combo_t key_combos[] = {
     [RSFT] = COMBO(right_shift, KC_RSFT),
     [LCTL] = COMBO(left_ctrl, KC_LCTL),
     [RCTL] = COMBO(right_ctrl, KC_RCTL),
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// CAPS_WORD configuration
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// Custom caps_word implementation to account for Danish underscore
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        case KC_MINS:
+            // Apply shift to next key.
+            add_weak_mods(MOD_BIT(KC_LSFT));
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+        case DK_UNDS:
+            return true;
+
+        default:
+            // Deactivate Caps Word.
+            return false;
+    }
 };
