@@ -11,7 +11,7 @@ enum layers {
     BASE_COLEMAK_DH_LAYER,
     SYMBOLS_LAYER,
     CTRL_NAV_LAYER,
-    EXTRA_SYMBOLS_LAYER,
+    NUMBER_LAYER,
     CTRL_MEDIA_LAYER,
     GAMING_LAYER,
 };
@@ -42,6 +42,11 @@ enum layers {
 #define KC_BKSL              LALT(LSFT(KC_7))
 #define KC_LABRCK            KC_GRAVE
 #define KC_RABRCK            LSFT(KC_GRAVE)
+#define KC_TICK              KC_EQUAL
+#define KC_BTICK             LSFT(KC_EQUAL)
+#define KC_UMLAUT            KC_RBRC
+#define KC_HASH              LSFT(KC_3)
+#define DK_DOLLAR            LSFT(RALT(KC_3))
 
 #ifdef _USE_QWERTY_BASE_LAYER
     #define BASE_LAYER BASE_QWERTY_LAYER
@@ -65,11 +70,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
     ),
     [SYMBOLS_LAYER] = LAYOUT(
-        KC_1,      KC_2,    KC_3,     KC_4,    KC_5,               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
-        KC_LABRCK, DK_LPRN, KC_LBRCK, DK_LBRC, DK_AMPR,            DK_EQL,  DK_QUES, DK_UNDS, DK_PLUS, DK_ASTR,
-        KC_RABRCK, DK_RPRN, KC_RBRCK, DK_RBRC, KC_BAR,             DK_TILD, DK_EXLM, DK_DQUO, DK_MINS, KC_AT_,
+        DK_DOLLAR, KC_HAT,  KC_TICK,  KC_BTICK, KC_HASH,            DK_DLR,  KC_AE,   KC_OE,   KC_AA,   KC_UMLAUT,
+        KC_LABRCK, DK_LPRN, KC_LBRCK, DK_LBRC,  DK_AMPR,            DK_EQL,  DK_QUES, DK_UNDS, DK_PLUS, DK_ASTR,
+        KC_RABRCK, DK_RPRN, KC_RBRCK, DK_RBRC,  KC_BAR,             DK_TILD, DK_EXLM, DK_DQUO, DK_MINS, KC_AT_,
 
-                                      _______, _______,            _______,       _______
+                                       _______, _______,            _______,       _______
     ),
     [CTRL_NAV_LAYER] = LAYOUT(
         _______,   OSM_SFT_GUI,   OSM_CTL_GUI,   OSM_ALT_GUI,   LCMD(KC_SPACE),           TG(CTRL_MEDIA_LAYER), KC_ENTER, KC_ESCAPE, _______, _______,
@@ -78,19 +83,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                                                              _______,  _______,            _______, _______
     ),
-    [EXTRA_SYMBOLS_LAYER] = LAYOUT(
-        _______, _______, _______,  _______,  _______,            _______,      KC_AE,         KC_OE,   KC_AA,     _______,
-        _______, KC_LSFT, KC_SPACE, KC_BSPC,  _______,            LALT(KC_GRV), LSFT(KC_3),    KC_BKSL, KC_SLASH_, _______,
-        _______, _______, _______,  _______,  _______,            KC_GRV,       LSFT(KC_LBRC), KC_HAT,  _______,   _______,
+    [NUMBER_LAYER] = LAYOUT(
+        XXXXXXX, KC_SPACE, DK_PLUS, DK_MINS, XXXXXXX,            XXXXXXX, DK_ASTR, KC_SLASH_, DK_PERC, XXXXXXX,
+        KC_1,    KC_2,     KC_3,    KC_4,    KC_5,               KC_6,    KC_7,    KC_8,      KC_9,    KC_0,
+        XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,            XXXXXXX, XXXXXXX, KC_COMMA,  KC_DOT,  DK_EQL,
 
-                                _______, _______,            _______, _______
+                                    XXXXXXX, XXXXXXX,            XXXXXXX, XXXXXXX
     ),
     [CTRL_MEDIA_LAYER] = LAYOUT(
-        _______, _______,                   _______, _______, QK_BOOTLOADER,    TG(CTRL_MEDIA_LAYER), _______,        _______,           _______,             _______,
-        _______, DF(BASE_QWERTY_LAYER),     _______, _______, _______,          _______,              KC_BRIGHT_UP,   KC_AUDIO_VOL_UP,   KC_MEDIA_PLAY_PAUSE, _______,
-        _______, DF(BASE_COLEMAK_DH_LAYER), _______, _______, _______,          _______,              KC_BRIGHT_DOWN, KC_AUDIO_VOL_DOWN, KC_AUDIO_MUTE,       _______,
+        _______, _______,                   _______, _______, QK_BOOTLOADER,            TG(CTRL_MEDIA_LAYER), _______,        _______,           _______,             _______,
+        _______, DF(BASE_QWERTY_LAYER),     _______, _______, _______,                  _______,              KC_BRIGHT_UP,   KC_AUDIO_VOL_UP,   KC_MEDIA_PLAY_PAUSE, _______,
+        _______, DF(BASE_COLEMAK_DH_LAYER), _______, _______, _______,                  _______,              KC_BRIGHT_DOWN, KC_AUDIO_VOL_DOWN, KC_AUDIO_MUTE,       _______,
 
-                           TG(CTRL_MEDIA_LAYER), TG(CTRL_MEDIA_LAYER),          TG(CTRL_MEDIA_LAYER), TG(CTRL_MEDIA_LAYER)
+                                 TG(CTRL_MEDIA_LAYER), TG(CTRL_MEDIA_LAYER),            TG(CTRL_MEDIA_LAYER), TG(CTRL_MEDIA_LAYER)
     ),
     [GAMING_LAYER] = LAYOUT(
         _______, _______, KC_W,    _______, _______,            _______, _______, _______, _______, _______,
@@ -102,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, CTRL_NAV_LAYER, SYMBOLS_LAYER, EXTRA_SYMBOLS_LAYER);
+  return update_tri_layer_state(state, CTRL_NAV_LAYER, SYMBOLS_LAYER, NUMBER_LAYER);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
