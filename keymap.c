@@ -77,9 +77,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                        _______, _______,            _______,       _______
     ),
     [CTRL_NAV_LAYER] = LAYOUT(
-        _______,   OSM_SFT_GUI,   OSM_CTL_GUI,   OSM_ALT_GUI,   LCMD(KC_SPACE),           TG(CTRL_MEDIA_LAYER), KC_ENTER, KC_ESCAPE, _______, _______,
-        CAPS_WORD, KC_LSFT,       KC_LCMD,       KC_LALT,       KC_SPACE,                 KC_TAB,               KC_LEFT,  KC_DOWN,   KC_UP,   KC_RIGHT,
-        _______,   OSM(MOD_LSFT), OSM(MOD_LGUI), OSM(MOD_LALT), _______,                  KC_SFTTAB,            KC_CUT,   KC_COPY,   KC_PASTE, _______,
+        _______,   OSM_SFT_GUI,   OSM_CTL_GUI,   OSM_ALT_GUI,   LCMD(KC_SPACE),           TG(CTRL_MEDIA_LAYER), KC_ENTER, KC_ESCAPE, _______,  _______,
+        CAPS_WORD, KC_LSFT,       KC_LCMD,       KC_LALT,       KC_SPACE,                 KC_TAB,               KC_LEFT,  KC_DOWN,   KC_UP,    KC_RIGHT,
+        _______,   OSM(MOD_LSFT), OSM(MOD_LGUI), OSM(MOD_LALT), KC_BSPC,                  KC_SFTTAB,            KC_CUT,   KC_COPY,   KC_PASTE, KC_BSPC,
 
                                                              _______,  _______,            _______, _______
     ),
