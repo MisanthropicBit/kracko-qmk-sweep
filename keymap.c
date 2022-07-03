@@ -16,6 +16,11 @@ enum layers {
     GAMING_LAYER,
 };
 
+// Allow combos on all layers as if they were on the QWERTY layer
+#define COMBO_ONLY_FROM_LAYER BASE_QWERTY_LAYER
+
+#define COMBO_SHOULD_TRIGGER
+
 #define OSM_SFT_GUI OSM(MOD_LSFT | MOD_LGUI)
 #define OSM_CTL_GUI OSM(MOD_LCTL | MOD_LGUI)
 #define OSM_ALT_GUI OSM(MOD_LALT | MOD_LGUI)
@@ -151,6 +156,11 @@ combo_t key_combos[] = {
     MAKE_COMBO(LGUI,      lgui,        KC_LGUI),
     MAKE_COMBO(RGUI,      rgui,        KC_RGUI),
 };
+
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    // Allow all combos only on the following layers
+    return layer_state_is(BASE_QWERTY_LAYER) || layer_state_is(BASE_COLEMAK_DH_LAYER) || layer_state_is(NUMBER_LAYER);
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // CAPS_WORD configuration
