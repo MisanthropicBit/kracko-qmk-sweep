@@ -130,7 +130,7 @@ const uint16_t COMBO_LEN = COMBO_LENGTH;
 
 // For QWERTY
 #define COMBO_KEYS(name, keycodes...) const uint16_t PROGMEM name##_combo[] = { keycodes, COMBO_END }
-#define MAKE_COMBO(name, keycode) [name] = COMBO(name ## _combo, keycode)
+#define MAKE_COMBO(combo, name, keycode) [combo] = COMBO(name##_combo, keycode)
 
 COMBO_KEYS(left_shift,  KC_D, KC_F);
 COMBO_KEYS(right_shift, KC_J, KC_K);
@@ -142,14 +142,14 @@ COMBO_KEYS(lgui,        KC_E, KC_R);
 COMBO_KEYS(rgui,        KC_U, KC_I);
 
 combo_t key_combos[] = {
-    MAKE_COMBO(left_shift, KC_LSFT),
-    MAKE_COMBO(right_shift, KC_RSFT),
-    MAKE_COMBO(left_ctrl, KC_LCTL),
-    MAKE_COMBO(right_ctrl, KC_RCTL),
-    MAKE_COMBO(lsft_lcmd, LSFT(KC_LGUI)),
-    MAKE_COMBO(rsft_rcmd, RSFT(KC_RGUI)),
-    MAKE_COMBO(lgui, KC_LGUI),
-    MAKE_COMBO(rgui, KC_RGUI),
+    MAKE_COMBO(LSFT,      left_shift,  KC_LSFT),
+    MAKE_COMBO(RSFT,      right_shift, KC_RSFT),
+    MAKE_COMBO(LCTL,      left_ctrl,   KC_LCTL),
+    MAKE_COMBO(RCTL,      right_ctrl,  KC_RCTL),
+    MAKE_COMBO(LSFT_LCMD, lsft_lcmd,   LSFT(KC_LGUI)),
+    MAKE_COMBO(RSFT_RCMD, rsft_rcmd,   RSFT(KC_RGUI)),
+    MAKE_COMBO(LGUI,      lgui,        KC_LGUI),
+    MAKE_COMBO(RGUI,      rgui,        KC_RGUI),
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////
