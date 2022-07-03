@@ -91,16 +91,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     XXXXXXX, XXXXXXX,            XXXXXXX, XXXXXXX
     ),
     [CTRL_MEDIA_LAYER] = LAYOUT(
-        _______, _______,                   _______, _______, QK_BOOTLOADER,            TG(CTRL_MEDIA_LAYER), _______,        _______,           _______,             _______,
-        _______, DF(BASE_QWERTY_LAYER),     _______, _______, _______,                  _______,              KC_BRIGHT_UP,   KC_AUDIO_VOL_UP,   KC_MEDIA_PLAY_PAUSE, _______,
-        _______, DF(BASE_COLEMAK_DH_LAYER), _______, _______, _______,                  _______,              KC_BRIGHT_DOWN, KC_AUDIO_VOL_DOWN, KC_AUDIO_MUTE,       _______,
+        _______, _______,                   _______, _______, QK_BOOTLOADER,            TG(CTRL_MEDIA_LAYER), TG(GAMING_LAYER), _______,           _______,             _______,
+        _______, DF(BASE_QWERTY_LAYER),     _______, _______, _______,                  _______,              KC_BRIGHT_UP,     KC_AUDIO_VOL_UP,   KC_MEDIA_PLAY_PAUSE, _______,
+        _______, DF(BASE_COLEMAK_DH_LAYER), _______, _______, _______,                  _______,              KC_BRIGHT_DOWN,   KC_AUDIO_VOL_DOWN, KC_AUDIO_MUTE,       _______,
 
                                  TG(CTRL_MEDIA_LAYER), TG(CTRL_MEDIA_LAYER),            TG(CTRL_MEDIA_LAYER), TG(CTRL_MEDIA_LAYER)
     ),
     [GAMING_LAYER] = LAYOUT(
-        _______, _______, KC_W,    _______, _______,            _______, _______, _______, _______, _______,
-        _______, KC_A,    KC_S,    KC_D,    _______,            _______, _______, _______, _______, _______,
-        KC_LCTL, _______, _______, _______, _______,            _______, _______, _______, _______, _______,
+        _______, _______, KC_W,    _______, _______,            _______, TG(GAMING_LAYER), _______, _______, _______,
+        _______, KC_A,    KC_S,    KC_D,    _______,            _______, _______,          _______, _______, _______,
+        KC_LCTL, _______, _______, _______, _______,            _______, _______,          _______, _______, _______,
 
                                    _______, _______,            _______, _______
     )
