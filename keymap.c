@@ -126,27 +126,30 @@ enum combo_events {
   COMBO_LENGTH,
 };
 
-uint16_t COMBO_LEN = COMBO_LENGTH;
+const uint16_t COMBO_LEN = COMBO_LENGTH;
 
 // For QWERTY
-const uint16_t PROGMEM left_shift[] = {KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM right_shift[] = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM left_ctrl[] = {KC_S, KC_D, COMBO_END};
-const uint16_t PROGMEM right_ctrl[] = {KC_K, KC_L, COMBO_END};
-const uint16_t PROGMEM lsft_lcmd[] = {KC_C, KC_V, COMBO_END};
-const uint16_t PROGMEM rsft_rcmd[] = {KC_M, KC_COMMA, COMBO_END};
-const uint16_t PROGMEM lgui[] = {KC_E, KC_R, COMBO_END};
-const uint16_t PROGMEM rgui[] = {KC_U, KC_I, COMBO_END};
+#define COMBO_KEYS(name, keycodes...) const uint16_t PROGMEM name##_combo[] = { keycodes, COMBO_END }
+#define MAKE_COMBO(name, keycode) [name] = COMBO(name ## _combo, keycode)
+
+COMBO_KEYS(left_shift,  KC_D, KC_F);
+COMBO_KEYS(right_shift, KC_J, KC_K);
+COMBO_KEYS(left_ctrl,   KC_S, KC_D);
+COMBO_KEYS(right_ctrl,  KC_K, KC_L);
+COMBO_KEYS(lsft_lcmd,   KC_C, KC_V);
+COMBO_KEYS(rsft_rcmd,   KC_M, KC_COMMA);
+COMBO_KEYS(lgui,        KC_E, KC_R);
+COMBO_KEYS(rgui,        KC_U, KC_I);
 
 combo_t key_combos[] = {
-    [LSFT] = COMBO(left_shift, KC_LSFT),
-    [RSFT] = COMBO(right_shift, KC_RSFT),
-    [LCTL] = COMBO(left_ctrl, KC_LCTL),
-    [RCTL] = COMBO(right_ctrl, KC_RCTL),
-    [LSFT_LCMD] = COMBO(lsft_lcmd, LSFT(KC_LGUI)),
-    [RSFT_RCMD] = COMBO(rsft_rcmd, RSFT(KC_RGUI)),
-    [LGUI] = COMBO(lgui, KC_LGUI),
-    [RGUI] = COMBO(rgui, KC_RGUI),
+    MAKE_COMBO(left_shift, KC_LSFT),
+    MAKE_COMBO(right_shift, KC_RSFT),
+    MAKE_COMBO(left_ctrl, KC_LCTL),
+    MAKE_COMBO(right_ctrl, KC_RCTL),
+    MAKE_COMBO(lsft_lcmd, LSFT(KC_LGUI)),
+    MAKE_COMBO(rsft_rcmd, RSFT(KC_RGUI)),
+    MAKE_COMBO(lgui, KC_LGUI),
+    MAKE_COMBO(rgui, KC_RGUI),
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////
