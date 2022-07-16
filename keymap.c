@@ -20,6 +20,7 @@ enum layers {
 #define COMBO_ONLY_FROM_LAYER BASE_QWERTY_LAYER
 
 #define COMBO_SHOULD_TRIGGER
+#define COMBO_TERM 50
 
 #define OSM_SFT_GUI OSM(MOD_LSFT | MOD_LGUI)
 #define OSM_CTL_GUI OSM(MOD_LCTL | MOD_LGUI)
@@ -53,26 +54,75 @@ enum layers {
 #define KC_HASH              LSFT(KC_3)
 #define DK_DOLLAR            LSFT(RALT(KC_3))
 
-#ifdef _USE_QWERTY_BASE_LAYER
-    #define BASE_LAYER BASE_QWERTY_LAYER
+#ifdef DYNAMIC_TAPPING_TERM_ENABLE
+    #define KC_DT_UP   DT_UP
+    #define KC_DT_DOWN DT_DOWN
+    #define KC_DT_PRNT DT_PRNT
 #else
+    #define KC_DT_UP   _______
+    #define KC_DT_DOWN _______
+    #define KC_DT_PRNT _______
+#endif
+
+#ifdef KRACKO_USE_COLEMAK_DH_BASE_LAYER
     #define BASE_LAYER BASE_COLEMAK_DH_LAYER
+#else
+    #define BASE_LAYER BASE_QWERTY_LAYER
+#endif
+
+#ifdef KRACKO_HOME_ROW_MODS
+    #ifdef KRACKO_USE_COLEMAK_DH_BASE_LAYER
+        #define KC_A_ LSFT_T(KC_A)
+        #define KC_R_ LCTL_T(KC_R)
+        #define KC_S_ LALT_T(KC_S)
+        #define KC_T_ LGUI_T(KC_T)
+
+        #define KC_N_ LSFT_T(KC_N)
+        #define KC_E_ LCTL_T(KC_E)
+        #define KC_I_ LALT_T(KC_I)
+        #define KC_O_ LGUI_T(KC_O)
+    #else
+        #define KC_A_ LSFT_T(KC_A)
+        #define KC_S_ LCTL_T(KC_S)
+        #define KC_D_ LALT_T(KC_D)
+        #define KC_F_ LGUI_T(KC_F)
+
+        #define KC_J_    LSFT_T(KC_J)
+        #define KC_K_    LCTL_T(KC_S)
+        #define KC_L_    LALT_T(KC_D)
+        #define DK_QUOT_ LGUI_T(DK_QUOT)
+    #endif
+#else
+    #define KC_A_    KC_A
+    #define KC_R_    KC_R
+    #define KC_S_    KC_S
+    #define KC_T_    KC_T
+    #define KC_D_    KC_D
+    #define KC_F_    KC_F
+    #define KC_N_    KC_N
+    #define KC_E_    KC_E
+    #define KC_I_    KC_I
+    #define KC_O_    KC_O
+    #define KC_J_    KC_J
+    #define KC_K_    KC_S
+    #define KC_L_    KC_D
+    #define DK_QUOT_ DK_QUOT
 #endif
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE_QWERTY_LAYER] = LAYOUT(
-        KC_Q, KC_W, KC_E, KC_R, KC_T,            KC_Y, KC_U, KC_I,     KC_O,   KC_P,
-        KC_A, KC_S, KC_D, KC_F, KC_G,            KC_H, KC_J, KC_K,     KC_L,   DK_QUOT,
-        KC_Z, KC_X, KC_C, KC_V, KC_B,            KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH_,
+        KC_Q,  KC_W,  KC_E,  KC_R,  KC_T,            KC_Y, KC_U,  KC_I,     KC_O,   KC_P,
+        KC_A_, KC_S_, KC_D_, KC_F_, KC_G,            KC_H, KC_J_, KC_K_,    KC_L_,  DK_QUOT_,
+        KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,            KC_N, KC_M,  KC_COMMA, KC_DOT, KC_SLASH_,
 
-         MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
+             MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
     ),
     [BASE_COLEMAK_DH_LAYER] = LAYOUT(
         KC_Q, KC_W, KC_F, KC_P, KC_B,            KC_J, KC_L, KC_U,     KC_Y,   DK_QUOT,
         KC_A, KC_R, KC_S, KC_T, KC_G,            KC_M, KC_N, KC_E,     KC_I,   KC_O,
         KC_Z, KC_X, KC_C, KC_D, KC_V,            KC_K, KC_H, KC_COMMA, KC_DOT, KC_SLASH_,
 
-         MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
+             MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
     ),
     [SYMBOLS_LAYER] = LAYOUT(
         DK_DOLLAR, KC_HAT,  KC_TICK,  KC_BTICK, KC_HASH,            DK_DLR,  KC_AE,   KC_OE,   KC_AA,   KC_UMLAUT,
@@ -96,11 +146,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     XXXXXXX, XXXXXXX,            XXXXXXX, XXXXXXX
     ),
     [CTRL_MEDIA_LAYER] = LAYOUT(
-        _______, _______,                   _______, _______, QK_BOOTLOADER,            TG(CTRL_MEDIA_LAYER), TG(GAMING_LAYER), _______,           _______,             _______,
-        _______, DF(BASE_QWERTY_LAYER),     _______, _______, _______,                  _______,              KC_BRIGHT_UP,     KC_AUDIO_VOL_UP,   KC_MEDIA_PLAY_PAUSE, _______,
-        _______, DF(BASE_COLEMAK_DH_LAYER), _______, _______, _______,                  _______,              KC_BRIGHT_DOWN,   KC_AUDIO_VOL_DOWN, KC_AUDIO_MUTE,       _______,
+        _______, _______,                   KC_DT_UP,   _______, QK_BOOTLOADER,            TG(CTRL_MEDIA_LAYER), TG(GAMING_LAYER), _______,           _______,             _______,
+        _______, DF(BASE_QWERTY_LAYER),     KC_DT_DOWN, _______, _______,                  _______,              KC_BRIGHT_UP,     KC_AUDIO_VOL_UP,   KC_MEDIA_PLAY_PAUSE, _______,
+        _______, DF(BASE_COLEMAK_DH_LAYER), KC_DT_PRNT, _______, _______,                  _______,              KC_BRIGHT_DOWN,   KC_AUDIO_VOL_DOWN, KC_AUDIO_MUTE,       _______,
 
-                                 TG(CTRL_MEDIA_LAYER), TG(CTRL_MEDIA_LAYER),            TG(CTRL_MEDIA_LAYER), TG(CTRL_MEDIA_LAYER)
+                                    TG(CTRL_MEDIA_LAYER), TG(CTRL_MEDIA_LAYER),            TG(CTRL_MEDIA_LAYER), TG(CTRL_MEDIA_LAYER)
     ),
     [GAMING_LAYER] = LAYOUT(
         _______, _______, KC_W,    _______, _______,            _______, TG(GAMING_LAYER), _______, _______, _______,
