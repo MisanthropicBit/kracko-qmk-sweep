@@ -4,6 +4,7 @@
  */
 #include QMK_KEYBOARD_H
 
+#include "config.h"
 #include "keymap_danish.h"
 
 enum layers {
