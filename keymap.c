@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
     ),
     [SYMBOLS_LAYER] = LAYOUT(
-        DK_DOLLAR, KC_HAT,  KC_BTICK,  KC_TICK, KC_HASH,            DK_DLR,  KC_AE,   KC_OE,   KC_AA,   KC_UMLAUT,
+        DK_DOLLAR, KC_HAT,  KC_BTICK, KC_TICK,  KC_HASH,            DK_DLR,  KC_AE,   KC_OE,   KC_AA,   KC_UMLAUT,
         KC_LABRCK, DK_LPRN, KC_LBRCK, DK_LBRC,  DK_AMPR,            DK_EQL,  DK_QUES, DK_UNDS, DK_PLUS, DK_ASTR,
         KC_RABRCK, DK_RPRN, KC_RBRCK, DK_RBRC,  KC_BAR,             DK_TILD, DK_EXLM, DK_DQUO, DK_MINS, KC_AT_,
 
@@ -239,57 +239,4 @@ bool caps_word_press_user(uint16_t keycode) {
             // Deactivate Caps Word.
             return false;
     }
-};
-
-typedef struct {
-    bool kc_j_held;
-    bool kc_f_held;
-} home_row_mods_state;
-
-static home_row_mods_state _home_row_mods_state = {
-    .kc_j_held = false,
-    .kc_f_held = false,
-};
-
-// Inspired by https://precondition.github.io/home-row-mods#rolled-modifiers-cancellation
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case LSFT_T(KC_J):
-            _home_row_mods_state.kc_j_held = record->event.pressed;
-            return true;
-
-        case LSFT_T(KC_F):
-            _home_row_mods_state.kc_f_held = record->event.pressed;
-            return true;
-
-        case LCTL_T(KC_K):
-            if (record->event.pressed && record->tap.count > 0) {
-                if (_home_row_mods_state.kc_j_held) {
-                    unregister_mods(MOD_BIT(KC_LSHIFT));
-                    tap_code(KC_J);
-                    tap_code(KC_K);
-                    add_mods(MOD_BIT(KC_LSHIFT));
-
-                    return false;
-                }
-            }
-
-            return true;
-
-        case KC_G:
-            if (record->event.pressed) {
-                if (_home_row_mods_state.kc_f_held) {
-                    unregister_mods(MOD_BIT(KC_LSHIFT));
-                    tap_code(KC_F);
-                    tap_code(KC_G);
-                    add_mods(MOD_BIT(KC_LSHIFT));
-
-                    return false;
-                }
-            }
-
-            return true;
-    }
-
-    return true;
 };
