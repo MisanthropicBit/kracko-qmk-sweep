@@ -71,27 +71,27 @@ enum layers {
 #endif
 
 #ifdef KRACKO_HOME_ROW_MODS
-    #ifdef KRACKO_USE_COLEMAK_DH_BASE_LAYER
-        #define KC_A_ LSFT_T(KC_A)
-        #define KC_R_ LCTL_T(KC_R)
-        #define KC_S_ LALT_T(KC_S)
-        #define KC_T_ LGUI_T(KC_T)
+    // Colemak DH home row mods
+    #define _KC_A LGUI_T(KC_A)
+    #define _KC_R LALT_T(KC_R)
+    #define _KC_S LCTL_T(KC_S)
+    #define _KC_T LSFT_T(KC_T)
 
-        #define KC_N_ LSFT_T(KC_N)
-        #define KC_E_ LCTL_T(KC_E)
-        #define KC_I_ LALT_T(KC_I)
-        #define KC_O_ LGUI_T(KC_O)
-    #else
-        #define KC_A_ LSFT_T(KC_A)
-        #define KC_S_ LCTL_T(KC_S)
-        #define KC_D_ LALT_T(KC_D)
-        #define KC_F_ LGUI_T(KC_F)
+    #define _KC_N LSFT_T(KC_N)
+    #define _KC_E LCTL_T(KC_E)
+    #define _KC_I LALT_T(KC_I)
+    #define _KC_O LGUI_T(KC_O)
 
-        #define KC_J_    LSFT_T(KC_J)
-        #define KC_K_    LCTL_T(KC_S)
-        #define KC_L_    LALT_T(KC_D)
-        #define DK_QUOT_ LGUI_T(DK_QUOT)
-    #endif
+    // QWERTY home row mods
+    #define KC_A_ LGUI_T(KC_A)
+    #define KC_S_ LALT_T(KC_S)
+    #define KC_D_ LCTL_T(KC_D)
+    #define KC_F_ LSFT_T(KC_F)
+
+    #define KC_J_    LSFT_T(KC_J)
+    #define KC_K_    LCTL_T(KC_K)
+    #define KC_L_    LALT_T(KC_L)
+    #define DK_QUOT_ LGUI_T(DK_QUOT)
 #else
     #define KC_A_    KC_A
     #define KC_R_    KC_R
@@ -104,9 +104,9 @@ enum layers {
     #define KC_I_    KC_I
     #define KC_O_    KC_O
     #define KC_J_    KC_J
-    #define KC_K_    KC_S
-    #define KC_L_    KC_D
+    #define KC_K_    KC_K
     #define DK_QUOT_ DK_QUOT
+    #define KC_L_    KC_L
 #endif
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -118,9 +118,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
     ),
     [BASE_COLEMAK_DH_LAYER] = LAYOUT(
-        KC_Q, KC_W, KC_F, KC_P, KC_B,            KC_J, KC_L, KC_U,     KC_Y,   DK_QUOT,
-        KC_A, KC_R, KC_S, KC_T, KC_G,            KC_M, KC_N, KC_E,     KC_I,   KC_O,
-        KC_Z, KC_X, KC_C, KC_D, KC_V,            KC_K, KC_H, KC_COMMA, KC_DOT, KC_SLASH_,
+        KC_Q,  KC_W,  KC_F,  KC_P,  KC_B,            KC_J, KC_L,  KC_U,     KC_Y,   DK_QUOT,
+        _KC_A, _KC_R, _KC_S, _KC_T, KC_G,            KC_M, _KC_N, _KC_E,    _KC_I,  _KC_O,
+        KC_Z,  KC_X,  KC_C,  KC_D,  KC_V,            KC_K, KC_H,  KC_COMMA, KC_DOT, KC_SLASH_,
 
              MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
     ),
