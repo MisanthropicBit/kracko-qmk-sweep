@@ -258,12 +258,21 @@ bool caps_word_press_user(uint16_t keycode) {
         }
 
     bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+        bool lctl_mod_activated = (get_mods() & MOD_BIT(KC_LCTL)) == MOD_BIT(KC_LCTL);
+        bool lalt_mod_activated = (get_mods() & MOD_BIT(KC_LALT)) == MOD_BIT(KC_LALT);
+
         switch (keycode) {
             case KC_COMMA: {
-                bool lctl_mod_activated = (get_mods() & MOD_BIT(KC_LCTL)) == MOD_BIT(KC_LCTL);
-                bool lalt_mod_activated = (get_mods() & MOD_BIT(KC_LALT)) == MOD_BIT(KC_LALT);
-
-                if (lctl_mod_activated) {
+                if (lctl_mod_activated && lalt_mod_activated) {
+                    if (record->event.pressed) {
+                        const uint8_t _real_mods = get_mods();
+                        clear_mods();
+                        register_code16(KC_LBRCK);
+                        set_mods(_real_mods);
+                    } else {
+                        unregister_code16(KC_LBRCK);
+                    }
+                } else if (lctl_mod_activated) {
                     if (record->event.pressed) {
                         const uint8_t _real_mods = get_mods();
                         clear_mods();
@@ -287,10 +296,16 @@ bool caps_word_press_user(uint16_t keycode) {
             }
 
             case KC_DOT: {
-                bool lctl_mod_activated = (get_mods() & MOD_BIT(KC_LCTL)) == MOD_BIT(KC_LCTL);
-                bool lalt_mod_activated = (get_mods() & MOD_BIT(KC_LALT)) == MOD_BIT(KC_LALT);
-
-                if (lctl_mod_activated) {
+                if (lctl_mod_activated && lalt_mod_activated) {
+                    if (record->event.pressed) {
+                        const uint8_t _real_mods = get_mods();
+                        clear_mods();
+                        register_code16(KC_RBRCK);
+                        set_mods(_real_mods);
+                    } else {
+                        unregister_code16(KC_RBRCK);
+                    }
+                } else if (lctl_mod_activated) {
                     if (record->event.pressed) {
                         const uint8_t _real_mods = get_mods();
                         clear_mods();
