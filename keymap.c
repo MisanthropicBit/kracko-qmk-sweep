@@ -126,11 +126,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
     ),
     [SYMBOLS_LAYER] = LAYOUT(
-        DK_DOLLAR, KC_HAT,  KC_BTICK, KC_TICK,  KC_HASH,            DK_DLR,  KC_AE,   KC_OE,   KC_AA,   KC_UMLAUT,
-        KC_LABRCK, DK_LPRN, KC_LBRCK, DK_LBRC,  DK_AMPR,            DK_EQL,  DK_QUES, DK_UNDS, DK_PLUS, DK_ASTR,
-        KC_RABRCK, DK_RPRN, KC_RBRCK, DK_RBRC,  KC_BAR,             DK_TILD, DK_EXLM, DK_DQUO, DK_MINS, KC_AT_,
+        KC_HAT,    DK_DOLLAR, KC_BTICK, KC_TICK,  KC_HASH,            DK_PERC, KC_AE,   KC_OE,   KC_AA,   KC_UMLAUT,
+        KC_LABRCK, DK_LPRN,   KC_LBRCK, DK_LBRC,  DK_AMPR,            DK_EQL,  DK_QUES, DK_UNDS, DK_PLUS, DK_ASTR,
+        KC_RABRCK, DK_RPRN,   KC_RBRCK, DK_RBRC,  KC_BAR,             DK_TILD, DK_EXLM, DK_DQUO, DK_MINS, KC_AT_,
 
-                                       _______, _______,            _______,       _______
+                                         _______, _______,            _______,       _______
     ),
     [CTRL_NAV_LAYER] = LAYOUT(
         _______,   OSM_SFT_GUI,   OSM_CTL_GUI,   OSM_ALT_GUI,   LCMD(KC_SPACE),           TG(CTRL_MEDIA_LAYER), KC_ENTER, KC_ESCAPE, _______,  _______,
