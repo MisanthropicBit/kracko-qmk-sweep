@@ -171,14 +171,19 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 //////////////////////////////////////////////////////////////////////////////////////////
 
 enum combo_events {
-  LSFT = 0,
-  RSFT,
-  LCTL,
-  RCTL,
-  LSFT_LCMD,
-  RSFT_RCMD,
-  LGUI,
-  RGUI,
+  #ifdef KRACKO_HOME_ROW_MODS
+    LCAPS_WORD = 0,
+    RCAPS_WORD,
+  #else
+    LSFT = 0,
+    RSFT,
+    LCTL,
+    RCTL,
+    LSFT_LCMD,
+    RSFT_RCMD,
+    LGUI,
+    RGUI,
+  #endif
   COMBO_LENGTH,
 };
 
@@ -188,24 +193,34 @@ const uint16_t COMBO_LEN = COMBO_LENGTH;
 #define COMBO_KEYS(name, keycodes...) const uint16_t PROGMEM name##_combo[] = { keycodes, COMBO_END }
 #define MAKE_COMBO(combo, name, keycode) [combo] = COMBO(name##_combo, keycode)
 
-COMBO_KEYS(left_shift,  KC_D, KC_F);
-COMBO_KEYS(right_shift, KC_J, KC_K);
-COMBO_KEYS(left_ctrl,   KC_S, KC_D);
-COMBO_KEYS(right_ctrl,  KC_K, KC_L);
-COMBO_KEYS(lsft_lcmd,   KC_C, KC_V);
-COMBO_KEYS(rsft_rcmd,   KC_M, KC_COMMA);
-COMBO_KEYS(lgui,        KC_E, KC_R);
-COMBO_KEYS(rgui,        KC_U, KC_I);
+#ifdef KRACKO_HOME_ROW_MODS
+    COMBO_KEYS(lcaps_word, KC_D, KC_F);
+    COMBO_KEYS(rcaps_word, KC_J, KC_K);
+#else
+    COMBO_KEYS(left_shift,  KC_D, KC_F);
+    COMBO_KEYS(right_shift, KC_J, KC_K);
+    COMBO_KEYS(left_ctrl,   KC_S, KC_D);
+    COMBO_KEYS(right_ctrl,  KC_K, KC_L);
+    COMBO_KEYS(lsft_lcmd,   KC_C, KC_V);
+    COMBO_KEYS(rsft_rcmd,   KC_M, KC_COMMA);
+    COMBO_KEYS(lgui,        KC_E, KC_R);
+    COMBO_KEYS(rgui,        KC_U, KC_I);
+#endif
 
 combo_t key_combos[] = {
-    MAKE_COMBO(LSFT,      left_shift,  KC_LSFT),
-    MAKE_COMBO(RSFT,      right_shift, KC_RSFT),
-    MAKE_COMBO(LCTL,      left_ctrl,   KC_LCTL),
-    MAKE_COMBO(RCTL,      right_ctrl,  KC_RCTL),
-    MAKE_COMBO(LSFT_LCMD, lsft_lcmd,   LSFT(KC_LGUI)),
-    MAKE_COMBO(RSFT_RCMD, rsft_rcmd,   RSFT(KC_RGUI)),
-    MAKE_COMBO(LGUI,      lgui,        KC_LGUI),
-    MAKE_COMBO(RGUI,      rgui,        KC_RGUI),
+    #ifdef KRACKO_HOME_ROW_MODS
+        MAKE_COMBO(LCAPS_WORD, lcaps_word, CAPS_WORD),
+        MAKE_COMBO(RCAPS_WORD, rcaps_word, CAPS_WORD),
+    #else
+        MAKE_COMBO(LSFT,      left_shift,  KC_LSFT),
+        MAKE_COMBO(RSFT,      right_shift, KC_RSFT),
+        MAKE_COMBO(LCTL,      left_ctrl,   KC_LCTL),
+        MAKE_COMBO(RCTL,      right_ctrl,  KC_RCTL),
+        MAKE_COMBO(LSFT_LCMD, lsft_lcmd,   LSFT(KC_LGUI)),
+        MAKE_COMBO(RSFT_RCMD, rsft_rcmd,   RSFT(KC_RGUI)),
+        MAKE_COMBO(LGUI,      lgui,        KC_LGUI),
+        MAKE_COMBO(RGUI,      rgui,        KC_RGUI),
+    #endif
 };
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
