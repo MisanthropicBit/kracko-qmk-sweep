@@ -94,16 +94,19 @@ enum layers {
     #define KC_L_    LALT_T(KC_L)
     #define DK_QUOT_ LGUI_T(DK_QUOT)
 #else
+    #define _KC_A    KC_A
+    #define _KC_R    KC_R
+    #define _KC_S    KC_S
+    #define _KC_T    KC_T
+    #define _KC_N    KC_N
+    #define _KC_E    KC_E
+    #define _KC_I    KC_I
+    #define _KC_O    KC_O
+
     #define KC_A_    KC_A
-    #define KC_R_    KC_R
     #define KC_S_    KC_S
-    #define KC_T_    KC_T
     #define KC_D_    KC_D
     #define KC_F_    KC_F
-    #define KC_N_    KC_N
-    #define KC_E_    KC_E
-    #define KC_I_    KC_I
-    #define KC_O_    KC_O
     #define KC_J_    KC_J
     #define KC_K_    KC_K
     #define DK_QUOT_ DK_QUOT
