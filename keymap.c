@@ -93,6 +93,9 @@ enum layers {
     #define KC_K_    LCTL_T(KC_K)
     #define KC_L_    LALT_T(KC_L)
     #define DK_QUOT_ LGUI_T(DK_QUOT)
+
+    #define KC_Z_    LSFT_T(KC_Z)
+    #define DK_MINS_  LSFT_T(DK_MINS)
 #else
     #define _KC_A    KC_A
     #define _KC_R    KC_R
@@ -111,20 +114,23 @@ enum layers {
     #define KC_K_    KC_K
     #define DK_QUOT_ DK_QUOT
     #define KC_L_    KC_L
+
+    #define KC_Z_    KC_Z
+    #define DK_MINS_ DK_MINS
 #endif
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE_QWERTY_LAYER] = LAYOUT(
         KC_Q,  KC_W,  KC_E,  KC_R,  KC_T,            KC_Y, KC_U,  KC_I,     KC_O,   KC_P,
         KC_A_, KC_S_, KC_D_, KC_F_, KC_G,            KC_H, KC_J_, KC_K_,    KC_L_,  DK_QUOT_,
-        KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,            KC_N, KC_M,  KC_COMMA, KC_DOT, KC_SLASH_,
+        KC_Z_, KC_X,  KC_C,  KC_V,  KC_B,            KC_N, KC_M,  KC_COMMA, KC_DOT, DK_MINS_,
 
              MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
     ),
     [BASE_COLEMAK_DH_LAYER] = LAYOUT(
         KC_Q,  KC_W,  KC_F,  KC_P,  KC_B,            KC_J, KC_L,  KC_U,     KC_Y,   DK_QUOT,
         _KC_A, _KC_R, _KC_S, _KC_T, KC_G,            KC_M, _KC_N, _KC_E,    _KC_I,  _KC_O,
-        KC_Z,  KC_X,  KC_C,  KC_D,  KC_V,            KC_K, KC_H,  KC_COMMA, KC_DOT, KC_SLASH_,
+        KC_Z_, KC_X,  KC_C,  KC_D,  KC_V,            KC_K, KC_H,  KC_COMMA, KC_DOT, DK_MINS_,
 
              MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
     ),
