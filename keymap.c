@@ -135,9 +135,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
     ),
     [SYMBOLS_LAYER] = LAYOUT(
-        KC_HAT,    DK_DOLLAR, KC_BTICK, KC_TICK,  KC_HASH,            DK_PERC, KC_AE,   KC_OE,   KC_AA,   KC_UMLAUT,
-        KC_LABRCK, DK_LPRN,   KC_LBRCK, DK_LBRC,  DK_AMPR,            DK_EQL,  DK_QUES, DK_UNDS, DK_PLUS, DK_ASTR,
-        KC_RABRCK, DK_RPRN,   KC_RBRCK, DK_RBRC,  KC_BAR,             DK_TILD, DK_EXLM, DK_DQUO, DK_MINS, KC_AT_,
+        KC_HAT,    DK_DOLLAR, KC_BTICK, KC_TICK,  KC_HASH,            DK_PLUS, KC_AE,   KC_OE,   KC_AA,   KC_UMLAUT,
+        KC_LABRCK, DK_LPRN,   KC_LBRCK, DK_LBRC,  DK_AMPR,            DK_EXLM, DK_EQL,  DK_UNDS, DK_PERC, DK_ASTR,
+        KC_RABRCK, DK_RPRN,   KC_RBRCK, DK_RBRC,  KC_BAR,             DK_TILD, DK_QUES, DK_DQUO, DK_MINS, KC_AT_,
 
                                          _______, _______,            _______,       _______
     ),
