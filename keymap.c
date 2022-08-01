@@ -356,6 +356,21 @@ bool caps_word_press_user(uint16_t keycode) {
 
                 return !(lctl_mod_activated || lalt_mod_activated);
             }
+
+            case DK_MINS: {
+                if (lctl_mod_activated) {
+                    if (record->event.pressed) {
+                        const uint8_t _real_mods = get_mods();
+                        clear_mods();
+                        register_code16(KC_SLASH_);
+                        set_mods(_real_mods);
+                    } else {
+                        unregister_code16(KC_SLASH_);
+                    }
+                }
+
+                return !lctl_mod_activated;
+            }
         }
 
         return true;
