@@ -203,8 +203,13 @@ const uint16_t COMBO_LEN = COMBO_LENGTH;
 #define MAKE_COMBO(combo, name, keycode) [combo] = COMBO(name##_combo, keycode)
 
 #ifdef KRACKO_HOME_ROW_MODS
-    COMBO_KEYS(lcaps_word, KC_D, KC_F);
-    COMBO_KEYS(rcaps_word, KC_J, KC_K);
+    #ifdef KRACKO_USE_COLEMAK_DH_BASE_LAYER
+        COMBO_KEYS(lcaps_word, KC_F, KC_P);
+        COMBO_KEYS(rcaps_word, KC_L, KC_U);
+    #else
+        COMBO_KEYS(lcaps_word, KC_E, KC_R);
+        COMBO_KEYS(rcaps_word, KC_U, KC_I);
+    #endif
 #else
     COMBO_KEYS(left_shift,  KC_D, KC_F);
     COMBO_KEYS(right_shift, KC_J, KC_K);
