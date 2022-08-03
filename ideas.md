@@ -8,3 +8,4 @@
 * Use BOTH_SHIFTS_TURNS_ON_CAPS_WORD, DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD, or a
   combo if home row mods are enabled
 * Use the outer thumb keys for toggling the numbers layer
+* https://github.com/intarga/ferris-keymap/blob/trunk/keymap.c
