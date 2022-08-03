@@ -142,11 +142,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                          _______, _______,            _______,       _______
     ),
     [CTRL_NAV_LAYER] = LAYOUT(
-        _______,   OSM_SFT_GUI,   OSM_CTL_GUI,   OSM_ALT_GUI,   LCMD(KC_SPACE),           TG(CTRL_MEDIA_LAYER), KC_ENTER, KC_ESCAPE, _______,  _______,
-        CAPS_WORD, KC_LSFT,       KC_LCMD,       KC_LALT,       KC_SPACE,                 KC_TAB,               KC_LEFT,  KC_DOWN,   KC_UP,    KC_RIGHT,
-        _______,   OSM(MOD_LSFT), OSM(MOD_LGUI), OSM(MOD_LALT), KC_BSPC,                  KC_SFTTAB,            KC_J,     KC_K,      _______, _______,
+        _______, OSM_SFT_GUI,   OSM_CTL_GUI,   OSM_ALT_GUI,   LCMD(KC_SPACE),           TG(CTRL_MEDIA_LAYER), KC_ENTER, KC_ESCAPE, _______, _______,
+        KC_LCMD, KC_LALT,       KC_LCTL,       KC_LSFT,       KC_SPACE,                 KC_TAB,               KC_LEFT,  KC_DOWN,   KC_UP,   KC_RIGHT,
+        _______, OSM(MOD_LSFT), OSM(MOD_LGUI), OSM(MOD_LALT), KC_BSPC,                  KC_SFTTAB,            KC_J,     KC_K,      _______, CAPS_WORD,
 
-                                                             _______,  _______,            _______, _______
+                                                           _______,  _______,           _______, _______
     ),
     [NUMBER_LAYER] = LAYOUT(
         XXXXXXX, KC_SPACE, DK_PLUS, DK_MINS, XXXXXXX,            XXXXXXX, DK_ASTR, KC_SLASH_, DK_PERC, XXXXXXX,
