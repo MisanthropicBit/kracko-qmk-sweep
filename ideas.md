@@ -9,3 +9,4 @@
   combo if home row mods are enabled
 * Use the outer thumb keys for toggling the numbers layer
 * https://github.com/intarga/ferris-keymap/blob/trunk/keymap.c
+* https://i.imgur.com/j6Illg2.png
