@@ -142,11 +142,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                          _______, _______,            _______,       _______
     ),
     [CTRL_NAV_LAYER] = LAYOUT(
-        _______, OSM_SFT_GUI,   OSM_CTL_GUI,   OSM_ALT_GUI,   LCMD(KC_SPACE),           TG(CTRL_MEDIA_LAYER), KC_ENTER, KC_ESCAPE, _______, _______,
-        KC_LCMD, KC_LALT,       KC_LCTL,       KC_LSFT,       KC_SPACE,                 KC_TAB,               KC_LEFT,  KC_DOWN,   KC_UP,   KC_RIGHT,
-        _______, OSM(MOD_LSFT), OSM(MOD_LGUI), OSM(MOD_LALT), KC_BSPC,                  KC_SFTTAB,            KC_J,     KC_K,      _______, CAPS_WORD,
+        _______,       _______,       _______,       _______,       _______,             _______, KC_ENTER, KC_ESCAPE, TG(CTRL_MEDIA_LAYER), _______,
+        KC_LCMD,       KC_LALT,       KC_LCTL,       KC_LSFT,       KC_SPACE,            KC_LEFT, KC_DOWN,  KC_UP,     KC_RIGHT,             _______,
+        OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LCTL), OSM(MOD_LSFT), KC_BSPC,             KC_TAB,  KC_J,     KC_K,      CAPS_WORD,            _______,
 
-                                                           _______,  _______,           _______, _______
+                                                           _______,  _______,            _______, _______
     ),
     [NUMBER_LAYER] = LAYOUT(
         XXXXXXX, KC_SPACE, DK_PLUS, DK_MINS, XXXXXXX,            XXXXXXX, DK_ASTR, KC_SLASH_, DK_PERC, XXXXXXX,
@@ -181,8 +181,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 enum combo_events {
   #ifdef KRACKO_HOME_ROW_MODS
-    LCAPS_WORD = 0,
-    RCAPS_WORD,
+    /* LCAPS_WORD = 0, */
+    /* RCAPS_WORD, */
   #else
     LSFT = 0,
     RSFT,
@@ -203,13 +203,13 @@ const uint16_t COMBO_LEN = COMBO_LENGTH;
 #define MAKE_COMBO(combo, name, keycode) [combo] = COMBO(name##_combo, keycode)
 
 #ifdef KRACKO_HOME_ROW_MODS
-    #ifdef KRACKO_USE_COLEMAK_DH_BASE_LAYER
-        COMBO_KEYS(lcaps_word, KC_F, KC_P);
-        COMBO_KEYS(rcaps_word, KC_L, KC_U);
-    #else
-        COMBO_KEYS(lcaps_word, KC_E, KC_R);
-        COMBO_KEYS(rcaps_word, KC_U, KC_I);
-    #endif
+    /* #ifdef KRACKO_USE_COLEMAK_DH_BASE_LAYER */
+    /*     COMBO_KEYS(lcaps_word, KC_F, KC_P); */
+    /*     COMBO_KEYS(rcaps_word, KC_L, KC_U); */
+    /* #else */
+    /*     COMBO_KEYS(lcaps_word, KC_E, KC_R); */
+    /*     COMBO_KEYS(rcaps_word, KC_U, KC_I); */
+    /* #endif */
 #else
     COMBO_KEYS(left_shift,  KC_D, KC_F);
     COMBO_KEYS(right_shift, KC_J, KC_K);
@@ -223,8 +223,8 @@ const uint16_t COMBO_LEN = COMBO_LENGTH;
 
 combo_t key_combos[] = {
     #ifdef KRACKO_HOME_ROW_MODS
-        MAKE_COMBO(LCAPS_WORD, lcaps_word, CAPS_WORD),
-        MAKE_COMBO(RCAPS_WORD, rcaps_word, CAPS_WORD),
+        /* MAKE_COMBO(LCAPS_WORD, lcaps_word, CAPS_WORD), */
+        /* MAKE_COMBO(RCAPS_WORD, rcaps_word, CAPS_WORD), */
     #else
         MAKE_COMBO(LSFT,      left_shift,  KC_LSFT),
         MAKE_COMBO(RSFT,      right_shift, KC_RSFT),
