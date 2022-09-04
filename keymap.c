@@ -126,14 +126,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_A_, KC_S_, KC_D_, KC_F_, KC_G,            KC_H, KC_J_, KC_K_,    KC_L_,  DK_QUOT_,
         KC_Z_, KC_X,  KC_C,  KC_V,  KC_B,            KC_N, KC_M,  KC_COMMA, KC_DOT, DK_MINS_,
 
-             MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
+     LT(CTRL_NAV_LAYER, KC_TAB), KC_BSPC,            KC_SPACE, LT(SYMBOLS_LAYER, KC_ENTER)
     ),
     [BASE_COLEMAK_DH_LAYER] = LAYOUT(
         KC_Q,  KC_W,  KC_F,  KC_P,  KC_B,            KC_J, KC_L,  KC_U,     KC_Y,   DK_QUOT,
         _KC_A, _KC_R, _KC_S, _KC_T, KC_G,            KC_M, _KC_N, _KC_E,    _KC_I,  _KC_O,
         KC_Z_, KC_X,  KC_C,  KC_D,  KC_V,            KC_K, KC_H,  KC_COMMA, KC_DOT, DK_MINS_,
 
-             MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
+     LT(CTRL_NAV_LAYER, KC_TAB), KC_BSPC,            KC_SPACE, LT(SYMBOLS_LAYER, KC_ENTER)
     ),
     #ifdef KRACKO_OVERLOADED_PUNCTUATION
         // With overloaded punctuation, we can replace some duplicate symbols on the symbols layer
