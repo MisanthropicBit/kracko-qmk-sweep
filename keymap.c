@@ -134,13 +134,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
              MO(CTRL_NAV_LAYER), KC_BSPC,            KC_SPACE, MO(SYMBOLS_LAYER)
     ),
-    [SYMBOLS_LAYER] = LAYOUT(
-        KC_HAT,    DK_DOLLAR, KC_BTICK, KC_TICK,  KC_HASH,            DK_PLUS, KC_AE,   KC_OE,   KC_AA,   KC_UMLAUT,
-        KC_LABRCK, DK_LPRN,   KC_LBRCK, DK_LBRC,  DK_AMPR,            DK_EXLM, DK_EQL,  DK_UNDS, DK_PERC, DK_ASTR,
-        KC_RABRCK, DK_RPRN,   KC_RBRCK, DK_RBRC,  KC_BAR,             DK_TILD, DK_QUES, DK_DQUO, DK_MINS, KC_AT_,
+    #ifdef KRACKO_OVERLOADED_PUNCTUATION
+        // With overloaded punctuation, we can replace some duplicate symbols on the symbols layer
+        [SYMBOLS_LAYER] = LAYOUT(
+            KC_HAT,    XXXXXXX, KC_BTICK,  KC_TICK, KC_HASH,            XXXXXXX, KC_AE,   KC_OE,   KC_AA,   KC_UMLAUT,
+            KC_LABRCK, DK_DQUO, DK_DOLLAR, DK_AMPR, DK_TILD,            XXXXXXX, DK_EXLM, DK_PERC, DK_QUES, XXXXXXX,
+            KC_RABRCK, DK_EQL,  KC_RBRCK,  KC_BAR,  KC_SLASH_,          XXXXXXX, XXXXXXX, XXXXXXX, DK_PLUS, KC_AT_,
 
-                                         _______, _______,            _______,       _______
-    ),
+                                             _______, _______,          _______,       _______
+        ),
+    #else
+        [SYMBOLS_LAYER] = LAYOUT(
+            KC_HAT,    DK_DOLLAR, KC_BTICK, KC_TICK,  KC_HASH,            XXXXXXX, KC_AE,   KC_OE,   KC_AA,   KC_UMLAUT,
+            KC_LABRCK, DK_LPRN,   KC_LBRCK, DK_LBRC,  DK_AMPR,            XXXXXXX, DK_EXLM, DK_DQUO, DK_PERC, DK_QUES,
+            KC_RABRCK, DK_RPRN,   KC_RBRCK, DK_RBRC,  KC_BAR,             XXXXXXX, DK_TILD, DK_EQL,  DK_PLUS, KC_AT_,
+
+                                             _______, _______,            _______,       _______
+        ),
+    #endif
     [CTRL_NAV_LAYER] = LAYOUT(
         _______,       _______,       _______,       _______,       _______,             _______, KC_ENTER, KC_ESCAPE, TG(CTRL_MEDIA_LAYER), _______,
         KC_LCMD,       KC_LALT,       KC_LCTL,       KC_LSFT,       KC_SPACE,            KC_LEFT, KC_DOWN,  KC_UP,     KC_RIGHT,             _______,
