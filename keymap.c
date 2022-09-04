@@ -54,6 +54,7 @@ enum layers {
 #define KC_UMLAUT            KC_RBRC
 #define KC_HASH              LSFT(KC_3)
 #define DK_DOLLAR            LSFT(RALT(KC_3))
+#define KC_APP_CYCLE         LCMD(LSFT(KC_BTICK))
 
 #ifdef DYNAMIC_TAPPING_TERM_ENABLE
     #define KC_DT_UP   DT_UP
@@ -154,7 +155,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     #endif
     [CTRL_NAV_LAYER] = LAYOUT(
         _______,       _______,       _______,       _______,       _______,             _______, KC_ENTER, KC_ESCAPE, TG(CTRL_MEDIA_LAYER), _______,
-        KC_LCMD,       KC_LALT,       KC_LCTL,       KC_LSFT,       KC_SPACE,            KC_LEFT, KC_DOWN,  KC_UP,     KC_RIGHT,             _______,
+        KC_LCMD,       KC_LALT,       KC_LCTL,       KC_LSFT,       KC_SPACE,            KC_LEFT, KC_DOWN,  KC_UP,     KC_RIGHT,             KC_APP_CYCLE,
         OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LCTL), OSM(MOD_LSFT), KC_BSPC,             KC_TAB,  KC_J,     KC_K,      CAPS_WORD,            _______,
 
                                                            _______,  _______,            _______, _______
