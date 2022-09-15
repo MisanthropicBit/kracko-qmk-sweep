@@ -56,6 +56,16 @@ enum layers {
 #define DK_DOLLAR            LSFT(RALT(KC_3))
 #define KC_APP_CYCLE         LCMD(LSFT(KC_BTICK))
 
+// Add home row mods on number layer for quick access to e.g. CMD + SHIFT + 7
+#define _KC_1 LGUI_T(KC_1)
+#define _KC_2 LALT_T(KC_2)
+#define _KC_3 LCTL_T(KC_3)
+#define _KC_4 LSFT_T(KC_4)
+#define _KC_7 LSFT_T(KC_7)
+#define _KC_8 LCTL_T(KC_8)
+#define _KC_9 LALT_T(KC_9)
+#define _KC_0 LGUI_T(KC_0)
+
 #ifdef DYNAMIC_TAPPING_TERM_ENABLE
     #define KC_DT_UP   DT_UP
     #define KC_DT_DOWN DT_DOWN
@@ -162,7 +172,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [NUMBER_LAYER] = LAYOUT(
         XXXXXXX, KC_SPACE, DK_PLUS, DK_MINS, XXXXXXX,            XXXXXXX, DK_ASTR, KC_SLASH_, DK_PERC, XXXXXXX,
-        KC_1,    KC_2,     KC_3,    KC_4,    KC_5,               KC_6,    KC_7,    KC_8,      KC_9,    KC_0,
+        _KC_1,   _KC_2,    _KC_3,   _KC_4,   KC_5,               KC_6,    _KC_7,   _KC_8,     _KC_9,   _KC_0,
         XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,            XXXXXXX, DK_EQL,  KC_COMMA,  KC_DOT,  XXXXXXX,
 
                                     XXXXXXX, XXXXXXX,            XXXXXXX, XXXXXXX
